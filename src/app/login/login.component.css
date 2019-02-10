@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    font-size: 300%;
+    color: white;
+    margin: 3%;
+    margin-top: 8%
+}
+
+p {
+    text-align: center;
+    color: #cecece;
+}
+
+#wrapper {
+    text-align: center;
+    margin-top: 3%
+}
+
+button {
+    width: min-content;
+}

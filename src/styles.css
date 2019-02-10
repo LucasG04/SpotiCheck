@@ -1,0 +1,34 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600');
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+html {
+    height: 100%;
+    animation: background-change 30s infinite;
+}
+
+@keyframes background-change{
+    0% {
+        background: url(./assets/images/concert_n_guy.webp) no-repeat center center fixed;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    30% {
+        background: url(./assets/images/dj-stuff.webp) no-repeat center center fixed;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    65% {
+        background: url(./assets/images/guitars_edited.webp) no-repeat center center fixed;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    100% {
+        background: url(./assets/images/concert_n_guy.webp) no-repeat center center fixed;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+}

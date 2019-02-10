@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.fabButton {
+    background-color: white;
+    opacity: 0.4;
+}
+
+.fabButton * {
+    color: black;
+}
+
+h1 {
+    text-align: center;
+    font-size: 300%;
+    color: white;
+    margin: 3%;
+}
+
+.mainCard {
+    width: 80%;
+    min-width: min-content;
+    margin: 0 auto;
+}
+
+.settings * {
+    float: left;
+    margin-right: 3%;
+}
+
+.settings::after {
+    display: table;
+    clear: both;
+}
+
+#limit {
+    width: 40%;
+}
+
+#analyseBtn {
+    float: right;
+    color: white;
+    background: black;
+    margin-right: 5%;
+}
+
+.dataTable {
+    width: 90%;
+    margin: 0 auto;
+}

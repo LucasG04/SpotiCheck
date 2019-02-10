@@ -1,0 +1,102 @@
+<button mat-fab class="fabButton">
+  <mat-icon routerLink="/login">arrow_back</mat-icon>
+</button>
+
+<h1>These are your hottest {{type}}:</h1>
+
+<mat-card class="mainCard">
+  <mat-card-content>
+    <div class="settings">
+      <mat-form-field>
+        <mat-select placeholder="Type" [(ngModel)]="type">
+          <mat-option *ngFor="let type of types" [value]="type" (click)="executeApiCall()">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Time Range" [(ngModel)]="timeRange">
+          <mat-option *ngFor="let timeRange of timeRanges" [value]="timeRange">
+            {{timeRange.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <form>
+        <mat-form-field id="limit">
+          <input matInput placeholder="Limit" [formControl]="limitFormControl">
+          <mat-error *ngIf="limitFormControl.hasError('max')">
+            Please enter a number that is <strong>less than or equal to 50</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+    <button mat-raised-button id="analyseBtn" (click)="executeApiCall()">Analyse</button>
+    
+    <div *ngIf="dataSourceArtists || dataSourceTracks">
+      <!-- Artists Table -->
+      <table mat-table [dataSource]="dataSourceArtists" class="dataTable" *ngIf="type==='Artists'">
+    
+        <!-- Rank Column 
+        <ng-container matColumnDef="rank">
+          <th mat-header-cell *matHeaderCellDef> Rank </th>
+          <td mat-cell *matCellDef="let item"> {{item.rank}} </td>
+        </ng-container>-->
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+        </ng-container>
+    
+        <!-- Genre Column -->
+        <ng-container matColumnDef="genre">
+          <th mat-header-cell *matHeaderCellDef> Genre </th>
+          <td mat-cell *matCellDef="let item"> {{item.genres}} </td>
+        </ng-container>
+    
+        <!-- Follower Column -->
+        <ng-container matColumnDef="follower">
+          <th mat-header-cell *matHeaderCellDef> Follower </th>
+          <td mat-cell *matCellDef="let item"> {{item.follower}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsArtists"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsArtists;"></tr>
+      </table>
+
+      <!-- Tracks Table -->
+      <table mat-table [dataSource]="dataSourceTracks" class="dataTable" *ngIf="type==='Tracks'">
+    
+        <!-- Rank Column 
+        <ng-container matColumnDef="rank">
+          <th mat-header-cell *matHeaderCellDef> Rank </th>
+          <td mat-cell *matCellDef="let item"> {{item.rank}} </td>
+        </ng-container>-->
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+        </ng-container>
+    
+        <!-- Genre Column -->
+        <ng-container matColumnDef="artists">
+          <th mat-header-cell *matHeaderCellDef> Artists </th>
+          <td mat-cell *matCellDef="let item"> {{item.artists}} </td>
+        </ng-container>
+    
+        <!-- Follower Column -->
+        <ng-container matColumnDef="album">
+          <th mat-header-cell *matHeaderCellDef> Album </th>
+          <td mat-cell *matCellDef="let item"> {{item.album}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsTracks"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsTracks;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+    </div>    
+
+  </mat-card-content>
+</mat-card>
