@@ -25,7 +25,7 @@
         <mat-form-field id="limit">
           <input matInput placeholder="Limit" [formControl]="limitFormControl">
           <mat-error *ngIf="limitFormControl.hasError('max')">
-            Please enter a number that is <strong>less than or equal to 50</strong>
+            Maximum limit is <strong>50</strong>
           </mat-error>
         </mat-form-field>
       </form>
