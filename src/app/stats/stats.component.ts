@@ -84,10 +84,10 @@ export class StatsComponent implements OnInit {
   getToken(): string {
     // let value = this.route.snapshot.queryParams['#access_token']; // use query params
     let token = '';
-    const url = window.location.href;
+    const url = window.location.href || '';
     const queryString = (url).substr((url).indexOf('?') + 1);
     const value = (queryString.split('='))[1];
-    token = value.substring(0, 163);
+    token = value ? value.substring(0, 163): '';
     return token;
   }
 
@@ -154,10 +154,10 @@ export class StatsComponent implements OnInit {
   }
 
   structureGenres(array: String[]): String[] {
-      array.forEach(genre => {
-        array[array.indexOf(genre)] = ' ' + this.capitalizeFirstLetter(genre);
-      });
-      return array;
+    array.forEach(genre => {
+      array[array.indexOf(genre)] = ' ' + this.capitalizeFirstLetter(genre);
+    });
+    return array;
   }
 
   capitalizeFirstLetter(string: String) {
