@@ -46,4 +46,4 @@ Thumbs.db
 hosting.*.cache
 
 # credentials
-src/app/shared/credentials.ts
+/src/environments/*

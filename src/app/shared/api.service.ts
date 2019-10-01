@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CREDENTIALS } from './credentials';
+import { CREDENTIALS } from '../../environments/credentials';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   authorization() {
-    const client_id = CREDENTIALS;
+    const client_id = CREDENTIALS.client_id;
     const response_type = 'token';
     //const redirect_uri = 'http://localhost:4200/stats';
     const redirect_uri = 'https://spoticheck.me/stats';

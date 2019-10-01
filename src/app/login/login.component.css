@@ -26,4 +26,5 @@ p {
 
 button {
     width: min-content;
+    padding: 0 1em;
 }
