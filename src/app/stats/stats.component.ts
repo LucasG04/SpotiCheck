@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Track } from '../shared/interfaces/track';
 import { Artist } from '../shared/interfaces/artist';
-import { ApiService } from '../shared/api.service';
-import { SnackbarService } from "../shared/snackbar.service";
+import { ApiService } from '../shared/services/api/api.service';
+import { SnackbarService } from "../shared/services/snackbar/snackbar.service";
 // import { ActivatedRoute } from "@angular/router"; // url params
 
 import { MatPaginator, MatTableDataSource } from '@angular/material';
