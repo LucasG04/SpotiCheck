@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CREDENTIALS } from '../../environments/credentials';
+import { CREDENTIALS } from '../../../../environments/credentials';
 
 @Injectable({
   providedIn: 'root'
