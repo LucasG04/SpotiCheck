@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Track } from '../shared/interfaces/track';
-import { Artist } from '../shared/interfaces/artist';
+import { Track } from '../shared/models/track';
+import { Artist } from '../shared/models/artist';
 import { ApiService } from '../shared/services/api/api.service';
 import { SnackbarService } from "../shared/services/snackbar/snackbar.service";
 // import { ActivatedRoute } from "@angular/router"; // url params
@@ -84,16 +84,17 @@ export class StatsComponent implements OnInit {
   getToken(): string {
     // let value = this.route.snapshot.queryParams['#access_token']; // use query params
     let token = '';
-    const url = window.location.href;
+    const url = window.location.href || '';
     const queryString = (url).substr((url).indexOf('?') + 1);
     const value = (queryString.split('='))[1];
-    token = value.substring(0, 163);
+    token = value ? value.substring(0, 163): '';
     return token;
   }
 
   // get the API Data
   async getData(token: String, type: String, timeRange: String = 'medium_term', limit: String = '10', offset: String = '0') {
     let topArray = [];
+    
 
     await this.apiService.getData(token, type, timeRange, limit).toPromise()
       .then((res: any) => {
@@ -153,10 +154,10 @@ export class StatsComponent implements OnInit {
   }
 
   structureGenres(array: String[]): String[] {
-      array.forEach(genre => {
-        array[array.indexOf(genre)] = ' ' + this.capitalizeFirstLetter(genre);
-      });
-      return array;
+    array.forEach(genre => {
+      array[array.indexOf(genre)] = ' ' + this.capitalizeFirstLetter(genre);
+    });
+    return array;
   }
 
   capitalizeFirstLetter(string: String) {
