@@ -3,7 +3,6 @@ import { Track } from '../shared/models/track';
 import { Artist } from '../shared/models/artist';
 import { ApiService } from '../shared/services/api/api.service';
 import { SnackbarService } from "../shared/services/snackbar/snackbar.service";
-// import { ActivatedRoute } from "@angular/router"; // url params
 
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
@@ -26,9 +25,9 @@ export class StatsComponent implements OnInit {
   // mat-select Arrays
   types: String[] = ['Artists', 'Tracks'];
   timeRanges = [
-    {name: 'Short (last 4 weeks)', code: 'short_term'},
-    {name: 'Medium (last 6 months)', code: 'medium_term'},
-    {name: 'Long (last several years)', code: 'long_term'}
+    { name: 'Short (last 4 weeks)', code: 'short_term' },
+    { name: 'Medium (last 6 months)', code: 'medium_term' },
+    { name: 'Long (last several years)', code: 'long_term' }
   ];
 
   // selected Values
@@ -37,7 +36,8 @@ export class StatsComponent implements OnInit {
 
   // angular material formControl
   limitFormControl = new FormControl('', [
-    Validators.max(50)
+    Validators.max(50),
+    Validators.required
   ]);
 
   // dataTable definitions
@@ -52,14 +52,19 @@ export class StatsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private apiService: ApiService,
     private snackService: SnackbarService, private router: Router) {
-      this.limitFormControl.setValue(10); // default value for limit
-    }
+    this.limitFormControl.setValue(10); // default value for limit
+  }
 
   ngOnInit() {
     this.executeApiCall();
   }
 
   executeApiCall() {
+    // Do not execute, if formControl contains wrong data
+    if (!this.limitFormControl.valid) {
+      this.limitFormControl.markAsTouched();
+      return;
+    }
     this.topArtists = [];
     this.topTracks = [];
 
@@ -87,14 +92,14 @@ export class StatsComponent implements OnInit {
     const url = window.location.href || '';
     const queryString = (url).substr((url).indexOf('?') + 1);
     const value = (queryString.split('='))[1];
-    token = value ? value.substring(0, 163): '';
+    token = value ? value.substring(0, 163) : '';
     return token;
   }
 
   // get the API Data
   async getData(token: String, type: String, timeRange: String = 'medium_term', limit: String = '10', offset: String = '0') {
     let topArray = [];
-    
+
 
     await this.apiService.getData(token, type, timeRange, limit).toPromise()
       .then((res: any) => {
