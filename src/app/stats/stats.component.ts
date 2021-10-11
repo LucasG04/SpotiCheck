@@ -5,7 +5,8 @@ import { ApiService } from '../shared/services/api/api.service';
 import { SnackbarService } from "../shared/services/snackbar/snackbar.service";
 // import { ActivatedRoute } from "@angular/router"; // url params
 
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
